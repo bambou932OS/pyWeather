@@ -33,7 +33,7 @@ def colorize(text:str, background_color_code:str, text_color_code:str, length:in
     return f'{background_color}{text_color}{text:^{length}}\u001b[0m'
 
 def print_weather_info(weather_data, metric=True):
-    pprint.pprint(weather_data)
+    #pprint.pprint(weather_data)
     print(
         # City part
         colorize(f'({weather_data["sys"]["country"]})', 7, 0) +
