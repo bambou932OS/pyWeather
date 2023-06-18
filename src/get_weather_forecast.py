@@ -1,6 +1,8 @@
 import json
 from urllib import request, error
-from . import api_key_parser # This is a relative import
+from . import api_key_parser
+import datetime
+import pprint
 
 def build_url_onecall(lat, lon, metric):
     # https://openweathermap.org/api/one-call-api
@@ -12,14 +14,18 @@ def build_url_onecall(lat, lon, metric):
     except: # api_key.ini 파일이 없거나, api_key.ini 파일이 올바른 형식이 아닐 때
         api_key_parser.make_api_key_file()
 
-    return f"https://api.openweathermap.org/data/3.0/onecall?lat={lat}&lon={lon}&appid={api_key}&units={metric}"
+    metric_string = "metric" if metric else "imperial"
 
-def get_onecall3_weather(weather_data, metric, api_key):
+    return f"https://api.openweathermap.org/data/3.0/onecall?lat={lat}&lon={lon}&appid={api_key}&units={metric_string}"
+
+
+
+def get_onecall3_weather(weather_data, metric):
     # https://openweathermap.org/api/one-call-api
     # https://openweathermap.org/api/one-call-api#history
     # https://openweathermap.org/api/one-call-api#parameter
-
-    query_url = build_url_onecall(weather_data['lat'], weather_data['lon'], metric, api_key_parser.get_api_key())
+    
+    query_url = build_url_onecall(weather_data['coord']['lat'], weather_data['coord']['lon'], metric)
 
     try:
         with request.urlopen(query_url) as response: # Get the response from the URL
@@ -45,5 +51,6 @@ def get_onecall3_weather(weather_data, metric, api_key):
         if(e.code//100 == 5): # 5xx Server Error
             print('Unexpected Error. Check Internet connection and try again later.')
             raise SystemExit
-        
+    
+    pprint.pprint(data)
     return data
