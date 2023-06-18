@@ -19,6 +19,36 @@ def build_url_onecall(lat, lon, metric):
     return f"https://api.openweathermap.org/data/3.0/onecall?lat={lat}&lon={lon}&appid={api_key}&units={metric_string}"
 
 
+def get_today_weather_forecast(weather_data):
+    weather_list = []
+
+    for weather in weather_data['hourly']:
+        weather_list.append([weather['weather'][0]['description'], weather['temp'], weather['dt']]) # add weather discription, temperature, time(Unix time)
+
+    weather_list.sort(key=lambda x: x[2]) # sort by time(Unix time)
+
+    # Get today's weather forecast
+    today_weather_forecast = []
+    for weather in weather_list:
+        if(datetime.datetime.fromtimestamp(weather[2]).date() == datetime.date.today()):
+            today_weather_forecast.append(weather)
+
+    # Get today's weather discreption by majority vote
+    today_weather_discreption = []
+    for weather in today_weather_forecast:
+        today_weather_discreption.append(weather[0])
+
+    today_weather_discreption = max(set(today_weather_discreption), key=today_weather_discreption.count) # Get the most frequent element in the list
+
+    # Get today's weather temperature by average
+    today_weather_temperature = 0
+    for weather in today_weather_forecast:
+        today_weather_temperature += weather[1]
+
+    today_weather_temperature /= len(today_weather_forecast)
+
+    return today_weather_discreption, today_weather_temperature
+
 
 def get_onecall3_weather(weather_data, metric):
     # https://openweathermap.org/api/one-call-api
@@ -52,5 +82,6 @@ def get_onecall3_weather(weather_data, metric):
             print('Unexpected Error. Check Internet connection and try again later.')
             raise SystemExit
     
-    pprint.pprint(data)
+    #pprint.pprint(data)
+    print(get_today_weather_forecast(data))
     return data
