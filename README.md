@@ -21,7 +21,7 @@ To install python, go to [python.org](https://www.python.org/downloads/) and dow
 After installing python, Clone this repository to your machine.
 
 ```bash
-git clone https://github.com/bambou932/pyWeather.git
+git clone https://github.com/bambou932OS/pyWeather.git
 
 cd pyWeather
 ```

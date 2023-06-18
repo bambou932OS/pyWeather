@@ -36,14 +36,14 @@ def print_weather_info(weather_data, metric=True):
     #pprint.pprint(weather_data)
     print(
         # City part
-        colorize(f'({weather_data["sys"]["country"]})', 7, 0) +
-        colorize(weather_data["name"], 7, 0, 17-len(weather_data["sys"]["country"])) +
-        colorize(' '*(len(weather_data["sys"]["country"]) + 2), 7, 0) +
+        colorize(f'({weather_data["sys"]["country"]})', "7", "0") +
+        colorize(weather_data["name"], "7", "0", 17-len(weather_data["sys"]["country"])) +
+        colorize(' '*(len(weather_data["sys"]["country"]) + 2), "7", "0") +
 
         # Weather part
         f' ' * 8 + 
         f'{weather_data["main"]["temp"]}°{"C" if metric else "F"}' +
         f' ' * 8 +
 
-        colorize(f'{weather_data["weather"][0]["description"].capitalize():^15}', weather_id_color_code[weather_data["weather"][0]["id"]], 0)
+        colorize(f'{weather_data["weather"][0]["description"].capitalize():^15}', weather_id_color_code[weather_data["weather"][0]["id"]], "0")
     )

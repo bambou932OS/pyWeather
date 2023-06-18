@@ -12,6 +12,8 @@ def get_args(): # Get the command-line arguments
     parser.add_argument('-c', '-m', '--metric', dest='metric', action='store_true', help='Use metric units instead of imperial.')
     # Fahrenheit scale, 화씨 온도 척도
     parser.add_argument('-f', '-i', '--imperial', dest='metric', action='store_false', help='Use imperial units instead of metric.')
+    # Weather forecast, 날씨 예보
+    parser.add_argument('-fc', '--forecast', dest='forecast', action='store_false', help='Get the weather forecast for today.')
 
     parser.set_defaults(metric=True)
     return parser.parse_args() # Return the parsed arguments

@@ -6,6 +6,7 @@ from src.api_key_parser import get_api_key, make_api_key_file # This is a relati
 from src.get_weather import get_weather # This is a relative import
 from src.print_weather_info import print_weather_info # This is a relative import
 from src.get_weather_forecast import get_onecall3_weather # This is a relative import
+from src.print_weather_forecast import print_weather_forecast # This is a relative import
 
 def main():
     # api_key.ini 파일을 읽어서 api_key를 가져오는데,
@@ -28,7 +29,8 @@ def main():
     for weather_data in weather_datas:
         print_weather_info(weather_data, metric)
         
-        forecast_data = get_onecall3_weather(weather_data, metric)
+        weather_data_forecast = get_onecall3_weather(weather_data, metric)
+        print_weather_forecast(weather_data_forecast, metric)
 
 if __name__ == "__main__": # Tells Python to run main() if we run this file directly
     main()
