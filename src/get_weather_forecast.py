@@ -83,7 +83,6 @@ def get_onecall3_weather(weather_data, metric):
             raise SystemExit
     
     #pprint.pprint(data)
-    print(get_today_weather_forecast(data))
     weather_forecast_data = get_today_weather_forecast(data)
 
     weather_data_forecast = {}
