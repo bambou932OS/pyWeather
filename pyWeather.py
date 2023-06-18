@@ -5,6 +5,7 @@ from src.argument_parser import get_args # This is a relative import
 from src.api_key_parser import get_api_key, make_api_key_file # This is a relative import
 from src.get_weather import get_weather # This is a relative import
 from src.print_weather_info import print_weather_info # This is a relative import
+from src.get_weather_forecast import get_onecall3_weather # This is a relative import
 
 def main():
     # api_key.ini 파일을 읽어서 api_key를 가져오는데,
@@ -22,11 +23,12 @@ def main():
 
     location = args.location
     metric = args.metric
+    weather_datas = get_weather(location, metric)
 
-    weather_data = get_weather(location, metric)
-
-    for data in weather_data:
-        print_weather_info(data, metric)
+    for weather_data in weather_datas:
+        print_weather_info(weather_data, metric)
+        
+        forecast_data = get_onecall3_weather(weather_data, metric)
 
 if __name__ == "__main__": # Tells Python to run main() if we run this file directly
     main()
