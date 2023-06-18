@@ -26,11 +26,13 @@ def main():
     metric = args.metric
     weather_datas = get_weather(location, metric)
 
-    for weather_data in weather_datas:
-        print_weather_info(weather_data, metric)
-        
-        weather_data_forecast = get_onecall3_weather(weather_data, metric)
-        print_weather_forecast(weather_data_forecast, metric)
+    for weather_data in weather_datas:    
+        if(args.forecast):
+            weather_data_forecast = get_onecall3_weather(weather_data, metric)
+            print_weather_forecast(weather_data_forecast, metric)
+
+        elif(args.weather):
+            print_weather_info(weather_data, metric)
 
 if __name__ == "__main__": # Tells Python to run main() if we run this file directly
     main()
