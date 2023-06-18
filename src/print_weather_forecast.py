@@ -40,7 +40,7 @@ def print_weather_forecast(weather_data, metric=True):
     print(
         # City part
         f'{colorize(weather_dt.strftime("%m-%d"), "255", "0")}' +
-        f'{colorize(weather_data["name"], "255", "0", 16 - len(weather_data["name"]))}' +
+        f'{colorize(weather_data["name"], "255", "0", 11)}' +
         f'{colorize(" " * len("[" + weather_dt.strftime("%m/%d") + "]"), "255", "0")}' +
 
         # Weather part

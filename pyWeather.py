@@ -31,7 +31,7 @@ def main():
             weather_data_forecast = get_onecall3_weather(weather_data, metric)
             print_weather_forecast(weather_data_forecast, metric)
 
-        elif(args.weather):
+        else:
             print_weather_info(weather_data, metric)
 
 if __name__ == "__main__": # Tells Python to run main() if we run this file directly

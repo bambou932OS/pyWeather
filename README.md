@@ -50,14 +50,12 @@ You can use the application by executing pyWeather.py with the city name as an a
 For example, if you want to know the weather in Paris, you can run the following command:
 
 ```bash
-python pyWeather.py New York
+python pyWeather.py Seoul
 ```
 <br>
 and you will get the following output:
 
-```
-The weather in New York(US) is 69.04°F, Haze
-```
+![PyWeather_result](./img/result_sample.png)
 <br>
 
 You can also use the application with arguments:
@@ -65,7 +63,17 @@ You can also use the application with arguments:
 - -h, --help : Show the help message and exit.
 - '-c', '-m', '--metric' : Show the temperature in Celsius.
 - '-f', '-i', '--imperial' : Show the temperature in Fahrenheit.
+- '-fc', '--forecast' : Show the weather forecast in today.
 
+## Using on Windows
+
+This application using ANSI escape code to color the output.
+
+Because it is designed to use on Linux, you may not see the color on Windows.
+
+If you are using Windows, you need to enable ANSI escape code [(Use ANSI colors in terminal)](https://ss64.com/nt/syntax-ansi.html) or use other terminal emulator support ANSI escape code or shell such as gitbash.
+
+<br>
 
 ---
 ### Version 1.1
@@ -97,3 +105,21 @@ Version 2.0 output
 ![PyWeather_v2.0_result](./img/v2.0_result.png)
 
 You can know the weather at a glance!
+
+## Windows terminal
+
+
+---
+### Version 2.1
+Now you can see the weather forecast on today!
+
+Simply use argument '-fc' or '--forecast' to see the weather forecast on today.
+
+You can get average temperature and weather description on today.
+
+Argument '-fc' or '--forecast' added.
+
+- '-fc', '--forecast' : Show the weather forecast on today.
+
+Version 2.1 output
+![PyWeather_v2.0_result](./img/v2.1_result.png)

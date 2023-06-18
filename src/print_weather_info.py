@@ -42,7 +42,7 @@ def print_weather_info(weather_data, metric=True):
 
         # Weather part
         f' ' * 8 + 
-        f'{weather_data["main"]["temp"]}°{"C" if metric else "F"}' +
+        f'{weather_data["main"]["temp"]:.02f}°{"C" if metric else "F"}' +
         f' ' * 8 +
 
         colorize(f'{weather_data["weather"][0]["description"].capitalize():^15}', weather_id_color_code[weather_data["weather"][0]["id"]], "0")
