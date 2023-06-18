@@ -1,6 +1,6 @@
 import json
 from urllib import request, error
-from . import api_key_parser
+from . import api_key_parser, print_weather_forecast
 import datetime
 import pprint
 
@@ -34,11 +34,11 @@ def get_today_weather_forecast(weather_data):
             today_weather_forecast.append(weather)
 
     # Get today's weather discreption by majority vote
-    today_weather_discreption = []
+    today_weather_discription = []
     for weather in today_weather_forecast:
-        today_weather_discreption.append(weather[0])
+        today_weather_discription.append(weather[0])
 
-    today_weather_discreption = max(set(today_weather_discreption), key=today_weather_discreption.count) # Get the most frequent element in the list
+    today_weather_discription = max(set(today_weather_discription), key=today_weather_discription.count) # Get the most frequent element in the list
 
     # Get today's weather temperature by average
     today_weather_temperature = 0
@@ -47,7 +47,7 @@ def get_today_weather_forecast(weather_data):
 
     today_weather_temperature /= len(today_weather_forecast)
 
-    return today_weather_discreption, today_weather_temperature
+    return today_weather_discription, today_weather_temperature, weather_data['current']['dt']
 
 
 def get_onecall3_weather(weather_data, metric):
@@ -84,4 +84,14 @@ def get_onecall3_weather(weather_data, metric):
     
     #pprint.pprint(data)
     print(get_today_weather_forecast(data))
+    weather_forecast_data = get_today_weather_forecast(data)
+
+    weather_data_forecast = {}
+    weather_data_forecast['description'] = weather_forecast_data[0]
+    weather_data_forecast['temp'] = weather_forecast_data[1]
+    weather_data_forecast['dt'] = weather_forecast_data[2]
+    weather_data_forecast['name'] = weather_data['name']
+    weather_data_forecast['country'] = weather_data['sys']['country']
+
+    print_weather_forecast.print_weather_forecast(weather_data_forecast, metric)
     return data
